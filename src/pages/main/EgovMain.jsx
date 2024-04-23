@@ -102,10 +102,10 @@ function EgovMain(props) {
             <div className="c_wrap">
                 <div className="colbox">
                     <div className="left_col">
-                        <img src="/assets/images/img_simple_main.png" alt="단순 홈페이지 전자정부 표준프레임워크의 경량환경 내부업무에 대한 최신 정보와 기술을 제공하고 있습니다." />
+                        
                     </div>
 
-                    <div className="right_col">
+                    {/* <div className="right_col">
                         <div className="mini_board">
                             <ul className="tab">
                                 <li><a href="#공지사항" className="on">공지사항</a></li>
@@ -140,10 +140,10 @@ function EgovMain(props) {
                                 <span>표준프레임워크센터의<br />약도 등의 정보를 제공합니다.</span>
                             </Link>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
-                <div className="banner_bot">
+                {/* <div className="banner_bot">
                     <div className="b1">
                         <div>
                             <h2>주요사업 소개</h2>
@@ -179,7 +179,7 @@ function EgovMain(props) {
                         </div>
                         <Link to={URL.INFORM}>자세히 보기</Link>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
 
