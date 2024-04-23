@@ -21,10 +21,10 @@ function EgovHeader() {
     const logInHandler = () => { // 로그인 정보 없을 시
         navigate(URL.LOGIN);
 		// PC와 Mobile 열린메뉴 닫기
-		document.querySelector('.all_menu.WEB').classList.add('closed');
-        document.querySelector('.btnAllMenu').classList.remove('active');
-        document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
-		document.querySelector('.all_menu.Mobile').classList.add('closed');
+		// document.querySelector('.all_menu.WEB').classList.add('closed');
+        // document.querySelector('.btnAllMenu').classList.remove('active');
+        // document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
+		// document.querySelector('.all_menu.Mobile').classList.add('closed');
     }
     const logOutHandler = () => {// 로그인 정보 존재할 때
         const logOutUrl = '/auth/logout';
@@ -44,10 +44,10 @@ function EgovHeader() {
                     window.alert("로그아웃되었습니다!");
                     navigate(URL.MAIN);
 					// PC와 Mobile 열린메뉴 닫기
-					document.querySelector('.all_menu.WEB').classList.add('closed');
-	                document.querySelector('.btnAllMenu').classList.remove('active');
-	                document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
-					document.querySelector('.all_menu.Mobile').classList.add('closed');
+					// document.querySelector('.all_menu.WEB').classList.add('closed');
+	                // document.querySelector('.btnAllMenu').classList.remove('active');
+	                // document.querySelector('.btnAllMenu').title = '전체메뉴 닫힘';
+					// document.querySelector('.all_menu.Mobile').classList.add('closed');
                 }
             }
         );
@@ -102,9 +102,9 @@ function EgovHeader() {
                     <button type="button" className="btn mobile btnAllMenuM" title="전체메뉴 닫힘">전체메뉴</button>
                 </div> */}
             </div>
-{/* 
+ 
             {/* <!-- All menu : web --> */}
-            <div className="all_menu WEB closed">
+            {/* <div className="all_menu WEB closed">
                 <h2 className="blind">전체메뉴</h2>
                 <div className="inner">
                     <div className="col">
@@ -154,11 +154,11 @@ function EgovHeader() {
                         </div>
                     }
                 </div>
-            </div>
+            </div> */}
             {/* <!-- All menu : mobile --> */}
-            <div className="all_menu Mobile closed">
+            {/* <div className="all_menu Mobile closed">
                 <div className="user_info_m">
-                    {/* 로그아웃 : 로그인 정보 있을때 */}
+                  
                     {sessionUserId &&
                         <>
                             <span className="person">{sessionUserName} </span>이 로그인하셨습니다.
@@ -166,7 +166,6 @@ function EgovHeader() {
                         </>
                     }
 
-                    {/* 로그인 : 로그인 정보 없을 때 */}
                     {!sessionUserId &&
                         <button onClick={logInHandler} className="btn login">로그인</button>
                     }
@@ -222,7 +221,7 @@ function EgovHeader() {
                         </>
                     }
                 </div>
-            </div> 
+            </div>  */}
             {/* <!--// All menu --> */}
         </div>
         // <!--// header -->
