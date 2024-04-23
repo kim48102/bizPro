@@ -149,16 +149,16 @@ const SecondRoutes = () => {
         <Route path={URL.ERROR} element={<EgovError />} />
 
         {/* ABOUT */}
-        <Route path={URL.ABOUT} element={<Navigate to={URL.ABOUT_SITE} />} />
+        {/* <Route path={URL.ABOUT} element={<Navigate to={URL.ABOUT_SITE} />} />
         <Route path={URL.ABOUT_SITE} element={<EgovAboutSite />} />
         <Route path={URL.ABOUT_HISTORY} element={<EgovAboutHistory />} />
         <Route path={URL.ABOUT_ORGANIZATION} element={<EgovAboutOrganization />} />
-        <Route path={URL.ABOUT_LOCATION} element={<EgovAboutLocation />} />
+        <Route path={URL.ABOUT_LOCATION} element={<EgovAboutLocation />} /> */}
 
         {/* INTRO */}
-        <Route path={URL.INTRO} element={<Navigate to={URL.INTRO_WORKS} />} />
+        {/* <Route path={URL.INTRO} element={<Navigate to={URL.INTRO_WORKS} />} />
         <Route path={URL.INTRO_WORKS} element={<EgovIntroWork />} />
-        <Route path={URL.INTRO_SERVICE} element={<EgovIntroService />} />
+        <Route path={URL.INTRO_SERVICE} element={<EgovIntroService />} /> */}
 
         {/* SUPPORT */}
         <Route path={URL.SUPPORT} element={<Navigate to={URL.SUPPORT_DOWNLOAD} />} />
