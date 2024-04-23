@@ -97,12 +97,12 @@ function EgovHeader() {
                 {/* <!--// PC web에서 보여지는 영역 --> */}
 
                 {/* <!-- right area --> */}
-                <div className="right_a">
+                {/* <div className="right_a">
                     <button type="button" className="btn btnAllMenu" title="전체메뉴 닫힘">전체메뉴</button>
                     <button type="button" className="btn mobile btnAllMenuM" title="전체메뉴 닫힘">전체메뉴</button>
-                </div>
+                </div> */}
             </div>
-
+{/* 
             {/* <!-- All menu : web --> */}
             <div className="all_menu WEB closed">
                 <h2 className="blind">전체메뉴</h2>
@@ -222,7 +222,7 @@ function EgovHeader() {
                         </>
                     }
                 </div>
-            </div>
+            </div> 
             {/* <!--// All menu --> */}
         </div>
         // <!--// header -->

@@ -14,9 +14,9 @@
     .lnk_go_template,
     .header .gnb,
     .header .user_info {display: none;}
-    .header .right_a {right: 20px; top: 20px;}
+    /* .header .right_a {right: 20px; top: 20px;}
     .header .right_a .btn {display: none;}
-    .header .right_a .btn.mobile {display: block;}
+    .header .right_a .btn.mobile {display: block;} */
 
     .all_menu.WEB {display: none !important;}
 
