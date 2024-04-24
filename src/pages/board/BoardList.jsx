@@ -6,48 +6,65 @@ function BoardList(){
     const [listTag, setListTag] = useState([]);
 
     const retrieveList = useCallback((searchCondition) => {
-        console.groupCollapsed("BoardList.retrieveList");
+        console.groupCollapsed("BoardList.retrieveList()");
 
-        const retrieveListURL = '/board'+EgovNet.getQueryString(searchCondition);
-        const requestOptinos = {
-              method : "GET"
-            , header : {
-                'Content-Type' : 'application/json'
+        // const retrieveListURL = '/board'+EgovNet.getQueryString(searchCondition);
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                'Content-type': 'application/json',
             }
         }
 
-        EgovNet.reqeustFetch(retvieveListURL, requestOptions,
-        (resp) => {
-            // setMasterBoard(resp.result.brdMatrVO);
-            // setPaginationInfo(resp.result.paginationInfo);
-            
-            let mutListTag = [];
+        // EgovNet.requestFetch(retrieveListURL,
+        //     requestOptions,
+        //     (resp) => {
+        //         setMasterBoard(resp.result.brdMstrVO);
+        //         setPaginationInfo(resp.result.paginationInfo);
 
-            const resultCnt = parseInt(resp.result.resultCnt);
-            const currentPageNo = resp.result.paginationInfo.currentPageNo;
-            const pageSize = resp.result.paginationInfo.pageSize;
+        //         let mutListTag = [];
 
-            //리스트 항목 구성
-            resp.result.resultList.forEach(function (item, index) {
-                if(index === 0) mutListTag = [];    //목록 초기화
-                const listIdx = itemIdxByPage(resultCnt, currentPageNo, pageSize, index);
+        //         const resultCnt = parseInt(resp.result.resultCnt);
+        //         const currentPageNo = resp.result.paginationInfo.currentPageNo;
+        //         const pageSize = resp.result.paginationInfo.pageSize;
 
-                mutListTag.push(
-                    
-                );
+        //         // 리스트 항목 구성
+        //         resp.result.resultList.forEach(function (item, index) {
+        //             if (index === 0) mutListTag = []; // 목록 초기화
+        //             const listIdx = itemIdxByPage(resultCnt , currentPageNo, pageSize, index);
 
-            });
-            if(!mutListTag.length) mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>); //게시판 목록 초기값
-            setListTag(mutListTag);
-        },
-        function (resp){
-            console.log("err response : " , resp);
-        }
-
-        );
+        //             mutListTag.push(
+        //                 <Link to={{pathname: URL.ADMIN_NOTICE_DETAIL}}
+        //                     state={{
+        //                         nttId: item.nttId,
+        //                         bbsId: item.bbsId,
+        //                         searchCondition: searchCondition
+        //                     }}
+        //                     key={listIdx} className="list_item" >
+        //                     <div>{listIdx}</div>
+        //                     {(item.replyLc * 1 ? true : false) &&
+        //                         <><div className="al reply">
+        //                             {item.nttSj}
+        //                         </div></>}
+        //                     {(item.replyLc * 1 ? false : true) &&
+        //                         <><div className="al">
+        //                             {item.nttSj}
+        //                         </div></>}
+        //                     <div>{item.frstRegisterNm}</div>
+        //                     <div>{item.frstRegisterPnttm}</div>
+        //                     <div>{item.inqireCo}</div>
+        //                 </Link>
+        //             );
+        //         });
+        //         if(!mutListTag.length) mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>); // 게시판 목록 초기값
+        //         setListTag(mutListTag);
+        //     },
+        //     function (resp) {
+        //         console.log("err response : ", resp);
+        //     }
+        // );
         console.groupEnd("BoardList.retrieveList()");
-    }, []);
-
+    },[]);
     return(
         <div className="container">
             <div className="c_wrap">
