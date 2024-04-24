@@ -43,7 +43,11 @@ const URL = {
     INFORM_GALLERY_CREATE       : "/inform/gallery/create", // 알림마당/사이트갤러리등록
     INFORM_GALLERY_MODIFY       : "/inform/gallery/modify", // 알림마당/사이트갤러리수정
     INFORM_GALLERY_REPLY        : "/inform/gallery/reply", // 알림마당/사이트갤러리답글
-    
+
+    INFORM_BOARD                : "/inform/board",          //게시판
+    INFORM_BOARDLIST            : "/inform/board/boardlist",       //게시판목록
+
+
     //ADMIN
     ADMIN                       : "/admin", // 사이트관리
     ADMIN_SCHEDULE              : "/admin/schedule", // 사이트관리/일정관리
