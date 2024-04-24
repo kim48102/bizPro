@@ -44,8 +44,10 @@ const URL = {
     INFORM_GALLERY_MODIFY       : "/inform/gallery/modify", // 알림마당/사이트갤러리수정
     INFORM_GALLERY_REPLY        : "/inform/gallery/reply", // 알림마당/사이트갤러리답글
 
-    INFORM_BOARD                : "/inform/board",          //게시판
-    INFORM_BOARDLIST            : "/inform/board/boardlist",       //게시판목록
+    //BOARD
+    BOARD                       : "/board",          //게시판
+    BOARD_LIST                  : "/board/boardlist",          //게시판
+
 
 
     //ADMIN
