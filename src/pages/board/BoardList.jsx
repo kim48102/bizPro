@@ -1,7 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import URL from 'constants/url';
 
 function BoardList(){
+
+    const [listTag, setListTag] = useState([]);
+
+    const retrieveList = useCallback((searchCondition) => {
+        console.groupCollapsed("BoardList.retrieveList");
+
+        const retrieveListURL = '/board'+EgovNet.getQueryString(searchCondition);
+        const requestOptinos = {
+              method : "GET"
+            , header : {
+                'Content-Type' : 'application/json'
+            }
+        }
+
+        EgovNet.reqeustFetch(retvieveListURL, requestOptions,
+        (resp) => {
+            // setMasterBoard(resp.result.brdMatrVO);
+            // setPaginationInfo(resp.result.paginationInfo);
+            
+            let mutListTag = [];
+
+            const resultCnt = parseInt(resp.result.resultCnt);
+            const currentPageNo = resp.result.paginationInfo.currentPageNo;
+            const pageSize = resp.result.paginationInfo.pageSize;
+
+            //리스트 항목 구성
+            resp.result.resultList.forEach(function (item, index) {
+                if(index === 0) mutListTag = [];    //목록 초기화
+                const listIdx = itemIdxByPage(resultCnt, currentPageNo, pageSize, index);
+
+                mutListTag.push(
+                    
+                );
+
+            });
+            if(!mutListTag.length) mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>); //게시판 목록 초기값
+            setListTag(mutListTag);
+        },
+        function (resp){
+            console.log("err response : " , resp);
+        }
+
+        );
+        console.groupEnd("BoardList.retrieveList()");
+    }, []);
+
     return(
         <div className="container">
             <div className="c_wrap">
@@ -32,11 +78,7 @@ function BoardList(){
                                 <span>조회수</span>
                             </div>
                             <div className="result">
-                                <span>1</span>
-                                <span>2</span>
-                                <span>3</span>
-                                <span>4</span>
-                                <span>5</span>
+                                { listTag }
                             </div>
                         </div>
                         {/* <!--// 게시판목록 --> */}
