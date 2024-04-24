@@ -173,7 +173,8 @@ const SecondRoutes = () => {
         <Route path={URL.SUPPORT_APPLY} element={<EgovSupportApply />} />
 
         {/* INFORM */}
-        <Route path={URL.INFORM} element={<Navigate to={URL.INFORM_DAILY} />} />
+        
+        {/* <Route path={URL.INFORM} element={<Navigate to={URL.INFORM_DAILY} />} />
 
         <Route path={URL.INFORM_DAILY} element={<EgovDailyList />} />
         <Route path={URL.INFORM_DAILY_DETAIL} element={<EgovDailyDetail />} />
@@ -190,7 +191,7 @@ const SecondRoutes = () => {
         <Route path={URL.INFORM_GALLERY_DETAIL} element={<EgovGalleryDetail />} />
         <Route path={URL.INFORM_GALLERY_CREATE} element={<EgovGalleryEdit mode={CODE.MODE_CREATE} />} />
         <Route path={URL.INFORM_GALLERY_MODIFY} element={<EgovGalleryEdit mode={CODE.MODE_MODIFY} />} />
-        <Route path={URL.INFORM_GALLERY_REPLY} element={<EgovGalleryEdit mode={CODE.MODE_REPLY} />} />
+        <Route path={URL.INFORM_GALLERY_REPLY} element={<EgovGalleryEdit mode={CODE.MODE_REPLY} />} /> */}
 
         {/* ADMIN */}
         <Route path={URL.ADMIN} element={<Navigate to={URL.ADMIN_SCHEDULE} />} />
