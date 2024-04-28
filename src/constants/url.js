@@ -45,10 +45,11 @@ const URL = {
     INFORM_GALLERY_REPLY        : "/inform/gallery/reply", // 알림마당/사이트갤러리답글
 
     //BOARD
-    BOARD                       : "/board",          //게시판
-    BOARD_LIST                  : "/board/boardlist",          //게시판
-
-
+    BOARD                       : "/board",             //게시판
+    BOARD_LIST                  : "/board/boardlist",   //게시판/게시판목록
+    BOARD_MODIFY                : "/board/boardmodify", //게시판/게시판수정
+    BOARD_DETAIL                : "/board/boarddetail", //게시판/게시판상세
+    BOARD_CREATE                : "/board/boardcreate", //게시판/게시판등록
 
     //ADMIN
     ADMIN                       : "/admin", // 사이트관리

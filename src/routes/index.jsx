@@ -46,7 +46,8 @@ import EgovGalleryEdit from 'pages/inform/gallery/EgovGalleryEdit';
 
 //BOARD
 import BoardList from 'pages/board/BoardList';
-
+import BoardDetail from 'pages/board/BoardDetail';
+import BoardEdit from 'pages/board/BoardEdit';
 //ADMIN
 import EgovAdminScheduleList from 'pages/admin/schedule/EgovAdminScheduleList';
 import EgovAdminScheduleDetail from 'pages/admin/schedule/EgovAdminScheduleDetail';
@@ -175,10 +176,13 @@ const SecondRoutes = () => {
 
         <Route path={URL.SUPPORT_APPLY} element={<EgovSupportApply />} />
 
-        {/* INFORM */}
+        {/* BOARD */}
         <Route path={URL.BOARD}  element={<Navigate to={URL.BOARD_LIST} />}/>
         <Route path={URL.BOARD_LIST}  element={<BoardList/>}/>
-        
+        <Route path={URL.BOARD_DETAIL}  element={<BoardDetail/>}/>
+        <Route path={URL.BOARD_CREATE} element={<BoardEdit mode={CODE.MODE_CREATE} />} />
+        <Route path={URL.BOARD_MODIFY}  element={<BoardEdit mode={CODE.MODE_MODIFY} />}/>
+         {/* INFORM */}
         {/* <Route path={URL.INFORM} element={<Navigate to={URL.INFORM_DAILY} />} />
 
         <Route path={URL.INFORM_DAILY} element={<EgovDailyList />} />

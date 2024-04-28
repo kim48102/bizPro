@@ -157,7 +157,7 @@ function EgovAdminGalleryList(props) {
                                 </li>
                                 {masterBoard.bbsUseFlag === 'Y' &&
                                     <li>
-                                        <Link to={URL.ADMIN_GALLERY_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
+                                        <Link to={URL.EATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
                                     </li>
                                 }
                             </ul>
