@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import * as EgovNet from 'api/egovFetch';
 import URL from 'constants/url';
 import CODE from 'constants/code';
-import { NOTICE_BBS_ID } from 'config';
+import { BOARD_BBS_ID } from 'config';
 
 import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavAdmin';
 import EgovAttachFile from 'components/EgovAttachFile';
@@ -19,7 +19,7 @@ function BoardDetail(props) {
     const location = useLocation();
     console.log("BoardDetail [location] : ", location);
 
-    const bbsId = location.state.bbsId || NOTICE_BBS_ID;
+    const bbsId = location.state.bbsId || BOARD_BBS_ID;
     const nttId = location.state.nttId;
     const searchCondition = location.state.searchCondition;
 
@@ -62,7 +62,7 @@ function BoardDetail(props) {
                 console.log("====>>> board delete= ", resp);
                 if (Number(resp.resultCode) === Number(CODE.RCV_SUCCESS)) {
                     alert("게시글이 삭제되었습니다.")
-                    navigate(URL.ADMIN_NOTICE ,{ replace: true });
+                    navigate(URL.BOARD ,{ replace: true });
                 } else {
                     navigate({pathname: URL.ERROR}, {state: {msg : resp.resultMessage}});
                 }

@@ -4,18 +4,19 @@ import URL from 'constants/url';
 import { Link, useLocation } from 'react-router-dom';
 import * as EgovNet from 'api/egovFetch';
 
-import { NOTICE_BBS_ID } from 'config';
+import { BOARD_BBS_ID } from 'config';
 
 import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavAdmin';
 import EgovPaging from 'components/EgovPaging';
 
 import { itemIdxByPage } from 'utils/calc';
+import { getSessionItem } from 'utils/storage';
 
 function BoardList(){
 
     const location = useLocation();
 
-    const bbsId = NOTICE_BBS_ID;
+    const bbsId = BOARD_BBS_ID;
 
     const cndRef = useRef();//useRef 사용하여 ref객체 생성후 cndRef와 wrdRef변수에 할당 
     const wrdRef = useRef();
@@ -25,6 +26,10 @@ function BoardList(){
     const [paginationInfo, setPaginationInfo] = useState({});
 
     const [listTag, setListTag] = useState([]);
+    const [loginVO, setLoginVO] = useState([]);
+
+    const sessionUser = getSessionItem('loginUser');
+    const sessionUserName = sessionUser?.name;
 
     const retrieveList = useCallback((searchCondition) => {
         console.groupCollapsed("BoardList.retrieveList()");
@@ -150,10 +155,10 @@ function BoardList(){
                                             onClick= {onSumitSearch}>조회</button>
                                     </span>
                                 </li>
-                                {masterBoard.bbsUseFlag === 'Y' &&
-                                    <li>
-                                        <Link to={URL.BOARD_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
-                                    </li>
+                                {sessionUserName !== undefined && sessionUserName !==null && 
+                                <li>
+                                    <Link to={URL.BOARD_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
+                                </li>
                                 }
                             </ul>
                         </div>
