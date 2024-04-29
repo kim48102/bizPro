@@ -50,6 +50,7 @@ const URL = {
     BOARD_MODIFY                : "/board/boardmodify", //게시판/게시판수정
     BOARD_DETAIL                : "/board/boarddetail", //게시판/게시판상세
     BOARD_CREATE                : "/board/boardcreate", //게시판/게시판등록
+    BOARD_REPLY                : "/board/boardreply", //게시판/게시판등록
 
     //ADMIN
     ADMIN                       : "/admin", // 사이트관리

@@ -182,6 +182,7 @@ const SecondRoutes = () => {
         <Route path={URL.BOARD_DETAIL}  element={<BoardDetail/>}/>
         <Route path={URL.BOARD_CREATE} element={<BoardEdit mode={CODE.MODE_CREATE} />} />
         <Route path={URL.BOARD_MODIFY}  element={<BoardEdit mode={CODE.MODE_MODIFY} />}/>
+        <Route path={URL.BOARD_REPLY}  element={<BoardEdit mode={CODE.MODE_REPLY} />}/>
          {/* INFORM */}
         {/* <Route path={URL.INFORM} element={<Navigate to={URL.INFORM_DAILY} />} />
 

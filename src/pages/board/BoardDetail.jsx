@@ -93,7 +93,7 @@ function BoardDetail(props) {
 
                 <div className="layout">
                     {/* <!-- Navigation --> */}
-                    <EgovLeftNav></EgovLeftNav>
+                  
                     {/* <!--// Navigation --> */}
 
                     <div className="contents NOTICE_VIEW" id="contents">

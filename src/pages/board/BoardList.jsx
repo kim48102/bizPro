@@ -92,6 +92,11 @@ function BoardList(){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const onSumitSearch =(e) => {
+        if (e.key === "Enter")
+       retrieveList({ ...searchCondition, pageIndex: 1, searchCnd: cndRef.current.value, searchWrd: wrdRef.current.value });
+    };
+
     return(
         <div className="container">
             <div className="c_wrap">
@@ -139,11 +144,10 @@ function BoardList(){
                                             onChange={e => {
                                                 wrdRef.current.value = e.target.value;
                                             }}
+                                            onKeyPress={onSumitSearch}
                                         />
                                         <button type="button"
-                                            onClick={() => {
-                                                retrieveList({ ...searchCondition, pageIndex: 1, searchCnd: cndRef.current.value, searchWrd: wrdRef.current.value });
-                                            }}>조회</button>
+                                            onClick= {onSumitSearch}>조회</button>
                                     </span>
                                 </li>
                                 {masterBoard.bbsUseFlag === 'Y' &&
