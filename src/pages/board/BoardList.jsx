@@ -17,7 +17,7 @@ function BoardList(){
 
     const bbsId = NOTICE_BBS_ID;
 
-    const cndRef = useRef();//useRef 사용하여 ref객체 생성후 cndRef와 wrdRef변수에 할당
+    const cndRef = useRef();//useRef 사용하여 ref객체 생성후 cndRef와 wrdRef변수에 할당 
     const wrdRef = useRef();
 
     const [searchCondition, setSearchCondition] = useState(location.state?.searchCondition || { bbsId: bbsId, pageIndex: 1, searchCnd: '0', searchWrd: '' });// 기존 조회에서 접근 했을 시 || 신규로 접근 했을 시
