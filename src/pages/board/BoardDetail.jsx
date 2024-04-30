@@ -9,6 +9,7 @@ import { BOARD_BBS_ID } from 'config';
 
 import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavAdmin';
 import EgovAttachFile from 'components/EgovAttachFile';
+import { getSessionItem } from 'utils/storage';
 
 function BoardDetail(props) {
     console.group("BoardDetail");
@@ -26,6 +27,9 @@ function BoardDetail(props) {
     const [masterBoard, setMasterBoard] = useState({});
     const [boardDetail, setBoardDetail] = useState({});
     const [boardAttachFiles, setBoardAttachFiles] = useState();
+
+    const sessionUser = getSessionItem('loginUser');
+    const sessionUserName = sessionUser?.name;
 
     const retrieveDetail = () => {
         const retrieveDetailURL = `/board/${bbsId}/${nttId}`;
@@ -135,7 +139,7 @@ function BoardDetail(props) {
 
 
                             <div className="board_btn_area">
-								{masterBoard.bbsUseFlag === 'Y' &&
+                            {sessionUserName !== undefined && sessionUserName !==null && 
 	                                <div className="left_col btn3">
 	                                    <Link to={{pathname: URL.BOARD_MODIFY}} 
 	                                        state={{
