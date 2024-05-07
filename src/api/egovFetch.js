@@ -33,7 +33,7 @@ export function requestFetch(url, requestOptions, handler, errorHandler) {
     if (!requestOptions['credentials']) {
         requestOptions = { ...requestOptions, credentials: 'include' };
     }
-
+    
     fetch(SERVER_URL + url, requestOptions)
         .then(response => {// response Stream. Not completion object
             //console.log("requestFetch [Response Stream] ", response); 

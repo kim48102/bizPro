@@ -148,7 +148,7 @@ function BoardDetail(props) {
                                 </div>
                             </div>
 
-                            <div className="`b`oard_article">
+                            <div className="board_article">
                                 <textarea name="" cols="30" rows="10" readOnly="readonly" defaultValue={boardDetail && boardDetail.nttCn}></textarea>
                             </div>
                             <div className="board_attach">
@@ -158,7 +158,7 @@ function BoardDetail(props) {
 
 
                             <div className="board_btn_area">
-                            {sessionUserName !== undefined && sessionUserName !==null && 
+                                {sessionUserName !== undefined && sessionUserName !==null && 
 	                                <div className="left_col btn3">
 	                                    <Link to={{pathname: URL.BOARD_MODIFY}} 
 	                                        state={{
