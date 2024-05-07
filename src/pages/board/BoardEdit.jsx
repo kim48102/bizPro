@@ -143,7 +143,7 @@ function BoardEdit(props) {
                 <ul>
                     <li><Link to={URL.MAIN} className="home">Home</Link></li>
                     <li><Link to={URL.BOARD_LIST}>게시판</Link></li>
-                    <li><Link to={URL.BOARD_CREATE}>게시판등록</Link></li>
+                    <li><Link to={URL.BOARD_CREATE}>게시판수정</Link></li>
                     <li>{masterBoard && masterBoard.bbsNm}</li>
                 </ul>
             </div>
@@ -221,7 +221,7 @@ function BoardEdit(props) {
                             {/* <!-- 버튼영역 --> */}
                             <div className="board_btn_area">
                                 <div className="left_col btn1">
-                                    <a href="#!" className="btn btn_skyblue_h46 w_100"
+                                    <a href={URL.BOARD_LIST} className="btn btn_skyblue_h46 w_100"
                                         onClick={(e) => {
                                             updateBoard();
                                         }}>저장</a>

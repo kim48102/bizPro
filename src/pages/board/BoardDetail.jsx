@@ -30,6 +30,25 @@ function BoardDetail(props) {
 
     const sessionUser = getSessionItem('loginUser');
     const sessionUserName = sessionUser?.name;
+    // const express = require('express');
+    // const app = express();
+    
+    // // GET 요청에 대한 핸들러
+    // app.get('/your/route', function(req, res) {
+    //     // 요청에 대한 라우트 핸들러 로직
+    
+    //     // Cache-Control 헤더 설정
+    //     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    
+    //     // 응답 보내기
+    //     res.send('Response for /your/route');
+    // });
+    
+    // // 서버 시작
+    // const port = 3000;
+    // app.listen(port, () => {
+    //     console.log(`Server is running on port ${port}`);
+    // });
 
     const retrieveDetail = () => {
         const retrieveDetailURL = `/board/${bbsId}/${nttId}`;
