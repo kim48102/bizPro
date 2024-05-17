@@ -42,6 +42,9 @@ function BoardList(){
             }
         }
 
+
+
+
         EgovNet.requestFetch(retrieveListURL,
             requestOptions,
             (resp) => {
@@ -151,8 +154,9 @@ function BoardList(){
                                             }}
                                             onKeyPress={onSumitSearch}
                                         />
-                                        <button type="button"
-                                            onClick= {onSumitSearch}>조회</button>
+                                        <button type="button"onClick={(e) => {
+                                            retrieveList({ ...searchCondition, pageIndex: 1, searchCnd: cndRef.current.value, searchWrd: wrdRef.current.value });
+	                                    }}>조회</button>
                                     </span>
                                 </li>
                                 {sessionUserName !== undefined && sessionUserName !==null && 
