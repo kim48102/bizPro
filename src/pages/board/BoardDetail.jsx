@@ -158,7 +158,7 @@ function BoardDetail(props) {
 
 
                             <div className="board_btn_area">
-                            {sessionUserName !== undefined && sessionUserName !==null && 
+                                {sessionUserName !== undefined && sessionUserName !==null && 
 	                                <div className="left_col btn3">
 	                                    <Link to={{pathname: URL.BOARD_MODIFY}} 
 	                                        state={{

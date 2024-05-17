@@ -5,44 +5,6 @@ const URL = {
     
     LOGIN                       : "/login", //로그인
     ERROR                       : "/error", //로그인
-    
-    //ABOUT
-    ABOUT                       : "/about", //사이트소개   
-    ABOUT_SITE                  : "/about/site", // 사이트소개/소개
-    ABOUT_HISTORY               : "/about/history", // 사이트소개/연혁
-    ABOUT_ORGANIZATION          : "/about/organization", // 사이트소개/조직소개
-    ABOUT_LOCATION              : "/about/location", // 사이트소개/찾아오시는길
-    
-    //INTRO
-    INTRO                       : "/intro", //정보마당
-    INTRO_WORKS                 : "/intro/works", // 정보마당/주요사업소개
-    INTRO_SERVICE               : "/intro/service", // 정보마당/주요서비스소개
-    
-    //SUPPORT
-    SUPPORT                     : "/support", // 고객지원
-    SUPPORT_DOWNLOAD            : "/support/download", // 고객지원/자료실
-    SUPPORT_DOWNLOAD_DETAIL     : "/support/download/detail", // 고객지원/자료실/상세
-    SUPPORT_DOWNLOAD_CREATE     : "/support/download/create", // 고객지원/자료실/등록
-    SUPPORT_QNA                 : "/support/qna", // 고객지원/묻고답하기
-    SUPPORT_QNA_DETAIL          : "/support/qna/detail", // 고객지원/묻고답하기/상세
-    SUPPORT_APPLY               : "/support/apply", // 고객지원/서비스신청
-    
-    //INFORM
-    INFORM                      : "/inform", // 알림마당 
-    INFORM_DAILY                : "/inform/daily", // 알림마당/오늘의행사
-    INFORM_DAILY_DETAIL         : "/inform/daily/detail", // 알림마당/오늘의행사상세
-    INFORM_WEEKLY               : "/inform/weekly", // 알림마당/금주의행사
-    INFORM_WEEKLY_DETAIL        : "/inform/weekly/detail", // 알림마당/금주의행사상세
-    INFORM_NOTICE               : "/inform/notice", // 알림마당/공지사항
-    INFORM_NOTICE_DETAIL        : "/inform/notice/detail", // 알림마당/공지사항상세
-    INFORM_NOTICE_CREATE        : "/inform/notice/create", // 알림마당/공지사항등록
-    INFORM_NOTICE_MODIFY        : "/inform/notice/modify", // 알림마당/공지사항수정
-    INFORM_NOTICE_REPLY         : "/inform/notice/reply", // 알림마당/공지사항답글
-    INFORM_GALLERY              : "/inform/gallery", // 알림마당/사이트갤러리
-    INFORM_GALLERY_DETAIL       : "/inform/gallery/detail", // 알림마당/사이트갤러리상세
-    INFORM_GALLERY_CREATE       : "/inform/gallery/create", // 알림마당/사이트갤러리등록
-    INFORM_GALLERY_MODIFY       : "/inform/gallery/modify", // 알림마당/사이트갤러리수정
-    INFORM_GALLERY_REPLY        : "/inform/gallery/reply", // 알림마당/사이트갤러리답글
 
     //BOARD
     BOARD                       : "/board",             //게시판
