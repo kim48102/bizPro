@@ -17,6 +17,12 @@ import EgovLogin from 'pages/login/EgovLogin';
 import BoardList from 'pages/board/BoardList';
 import BoardDetail from 'pages/board/BoardDetail';
 import BoardEdit from 'pages/board/BoardEdit';
+
+//EXCEL
+import ExcelSelect from 'pages/excel/ExcelSelect';
+import ExcelDownload from 'pages/excel/ExcelDownload';
+import ExcelUpload from 'pages/excel/ExcelUpload';
+
 //ADMIN
 import EgovAdminScheduleList from 'pages/admin/schedule/EgovAdminScheduleList';
 import EgovAdminScheduleDetail from 'pages/admin/schedule/EgovAdminScheduleDetail';
@@ -114,9 +120,7 @@ const SecondRoutes = () => {
         <Route path={URL.MAIN} element={<EgovMain />} />
 
         {/* LOGIN */}
-        <Route path={URL.LOGIN} element={<EgovLogin
-                onChangeLogin={(user) => setLoginVO(user)}
-              />}/>
+        <Route path={URL.LOGIN} element={<EgovLogin onChangeLogin={(user) => setLoginVO(user)}/>}/>
 
         {/* ERROR */}
         <Route path={URL.ERROR} element={<EgovError />} />
@@ -129,6 +133,12 @@ const SecondRoutes = () => {
         <Route path={URL.BOARD_MODIFY}  element={<BoardEdit mode={CODE.MODE_MODIFY} />}/>
         <Route path={URL.BOARD_REPLY}  element={<BoardEdit mode={CODE.MODE_REPLY} />}/>
 
+        {/* EXCEL */}
+        <Route path={URL.EXCEL}  element={<Navigate to={URL.EXCEL_SELECT} />}/>
+        <Route path={URL.EXCEL_SELECT}  element={<ExcelSelect/>}/>
+        <Route path={URL.EXCEL_DOWNLOAD}  element={<ExcelDownload/>}/>
+        <Route path={URL.EXCEL_UPLOAD}  element={<ExcelUpload/>}/>
+        
         {/* ADMIN */}
         <Route path={URL.ADMIN} element={<Navigate to={URL.ADMIN_SCHEDULE} />} />
         <Route path={URL.ADMIN_SCHEDULE} element={<EgovAdminScheduleList />} />

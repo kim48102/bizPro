@@ -7,7 +7,6 @@ import URL from 'constants/url';
 import CODE from 'constants/code';
 import { BOARD_BBS_ID } from 'config';
 
-import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavAdmin';
 import EgovAttachFile from 'components/EgovAttachFile';
 import { getSessionItem } from 'utils/storage';
 

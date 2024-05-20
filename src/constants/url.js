@@ -14,6 +14,12 @@ const URL = {
     BOARD_CREATE                : "/board/boardcreate", //게시판/게시판등록
     BOARD_REPLY                : "/board/boardreply", //게시판/게시판등록
 
+    //EXCEL
+    EXCEL                       : "/excel",             //엑셀다운로드 업로드
+    EXCEL_SELECT                : "/excel/excelselect",    //엑셀다운로드 버튼선택
+    EXCEL_DOWNLOAD              : "/excel/exceldownload",   //엑셀다운로드 파일
+    EXCEL_UPLOAD                : "/excel/excelupload",   //엑셀업로드 파일
+
     //ADMIN
     ADMIN                       : "/admin", // 사이트관리
     ADMIN_SCHEDULE              : "/admin/schedule", // 사이트관리/일정관리
