@@ -148,7 +148,7 @@ function BoardDetail(props) {
                                 </div>
                             </div>
 
-                            <div className="`b`oard_article">
+                            <div className="board_article">
                                 <textarea name="" cols="30" rows="10" readOnly="readonly" defaultValue={boardDetail && boardDetail.nttCn}></textarea>
                             </div>
                             <div className="board_attach">
