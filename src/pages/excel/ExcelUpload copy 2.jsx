@@ -1,4 +1,3 @@
-import { SERVER_URL } from 'config';
 import React, { useState, useCallback, useRef } from 'react';
 import URL from 'constants/url';
 import axios from 'axios';
@@ -23,75 +22,21 @@ function ExcelUpload(onJSONData){
     const sessionUser = getSessionItem('loginUser');
     const sessionUserName = sessionUser?.name;
 
-    //const [uploadedFileData, setUploadedFileData] = useState([]);
-    
+    const [uploadedFileData, setUploadedFileData] = useState([]);
+
     // MySQL 데이터베이스에 적재하는 함수
-    // const uploadToDatabase = async () => {
-    //     if(uploadedFileData==null||uploadedFileData==''){
-    //         alert("파일을 선택하세요.");
-    //         return;
-    //     }     
-    //     try {
-    //       // 업로드된 파일 데이터를 서버로 전송
-    //       const response = await axios.post(SERVER_URL+'/excel/upload', {
-    //         data: uploadedFileData
-    //       });
-          
-    //       console.log(response.data); // 성공적으로 적재된 데이터 확인
-    //     } catch (error) {
-    //       console.error('Error uploading data to database:', error);
-    //     }
-    // };
+    const uploadToDatabase = async () => {
+      try {
+        // 업로드된 파일 데이터를 서버로 전송
+        const response = await axios.post('http://your-server-endpoint/upload', {
+          data: uploadedFileData
+        });
+        console.log(response.data); // 성공적으로 적재된 데이터 확인
+      } catch (error) {
+        console.error('Error uploading data to database:', error);
+      }
+    };
     
-    const uploadToDatabase = useCallback((data) => {
-        console.groupCollapsed("upload.uploadToDatabase()");
-
-        const retrieveListURL = '/excel';
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                'Content-type': 'application/json',
-            },
-            data: data
-        }
-
-        EgovNet.requestFetch(retrieveListURL,
-            requestOptions,
-            (resp) => {
-                setMasterBoard(resp.result.brdMstrVO);
-                console.log('retrieveListURL ' + retrieveListURL);
-                console.log('requestOptions ' + requestOptions);
-                console.log('resp ' + resp);
-
-                let mutListTag = [];
-
-                const resultCnt = parseInt(resp.result.resultCnt);
-
-                // 리스트 항목 구성
-                resp.result.resultList.forEach(function (item, index) {
-                    if (index === 0) mutListTag = []; // 목록 초기화
-                    console.log('item ' + item);
-                    console.log('index ' + index);
-                    mutListTag.push(
-                        <Link to={{pathname: URL.ADMIN_NOTICE_DETAIL}}
-                            state={{
-                                table: item.table,
-                                bbsId: item.bbsId,
-                            }}
-                            key={bbsId} className="list_item" >
-                        </Link>
-                    );
-                });
-                if(!mutListTag.length) mutListTag.push(<p className="no_data" key="0">검색결과없음</p>);
-                setListTag(mutListTag);
-            },
-            function (resp) {
-                console.log("err response : ", resp);
-            }
-        );
-        console.groupEnd("upload.uploadToDatabase()");
-    },[]);
-
     // 엑셀 파일을 읽어오고 데이터를 파싱하는 함수
     const readExcel = (file) => {
         const fileReader = new FileReader();
@@ -108,8 +53,7 @@ function ExcelUpload(onJSONData){
         const rawData = fileInformation.Sheets[sheetName];
         const data = XLSX.utils.sheet_to_json(rawData);
 
-        //setUploadedFileData(data);
-        uploadToDatabase(data);
+        setUploadedFileData(data);
         };
     };
 

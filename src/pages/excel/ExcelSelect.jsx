@@ -1,23 +1,18 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState } from 'react';
 import URL from 'constants/url';
+import ExcelUpload from './ExcelUpload';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { EXCEL_BBS_ID } from 'config';
-
-import { getSessionItem } from 'utils/storage';
-
-function BoardList(){
-
-    const location = useLocation();
-    const bbsId = EXCEL_BBS_ID;
+function ExcelLoader(){
     const [masterBoard, setMasterBoard] = useState({});
 
-    const [listTag, setListTag] = useState([]);
-    const [loginVO, setLoginVO] = useState([]);
+    const [jsonData, setJsonData] = useState([]);
 
-    const sessionUser = getSessionItem('loginUser');
-    const sessionUserName = sessionUser?.name;
+    const hJsonData=(data)=>{
+        setJsonData(data);
+        console.log(data);
+    }
 
     return(
         <div className="container">
@@ -51,7 +46,9 @@ function BoardList(){
                             <div className="excel_list"></div>
                             <br></br>
                             <div className="excel_text">
-                                <Link to={URL.EXCEL_UPLOAD } className="excel_text" >업로드</Link>
+                                <span className="excel_text" >업로드</span>
+                                {/* <Link to={URL.EXCEL_UPLOAD } className="excel_text" >업로드</Link> */}
+                                <ExcelUpload onJsonData={hJsonData} className="excel_text" />
                             </div>
                         <br></br>
                         </>
@@ -64,4 +61,4 @@ function BoardList(){
     );
 }
 
-export default BoardList;
+export default ExcelLoader;

@@ -7,8 +7,9 @@ import * as EgovNet from 'api/egovFetch';
 import { EXCEL_BBS_ID } from 'config';
 
 import { getSessionItem } from 'utils/storage';
+import XLSX from 'xlsx';
 
-function ExcelLoader(){
+function ExcelUpload(onJSONData){
 
     const location = useLocation();
     const bbsId = EXCEL_BBS_ID;
@@ -20,26 +21,16 @@ function ExcelLoader(){
     const sessionUser = getSessionItem('loginUser');
     const sessionUserName = sessionUser?.name;
 
-    // const excelDownload = (data: object[], fileName: string) => {
-    //     const excelFileName = `${fileName}_${formatFileNameDate(new Date())}.xlsx`;
-      
-    //     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data); 
-    //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-      
-    //     XLSX.writeFile(wb, excelFileName);
-    // };
-
     return(
         <div className="container">
             <div className="c_wrap">
                 {/* <!-- Location --> */}
-                <div className="location">
+                {/* <div className="location">
                     <ul>
                         <li><Link to={URL.MAIN} className="home">Home</Link></li>
                         <li><Link to={URL.EXCEL}>엑셀 다운로드 업로드</Link></li>
                     </ul>
-                </div>
+                </div> */}
                 {/* <!--// Location --> */}
 
                 <div className="layout">
@@ -47,18 +38,19 @@ function ExcelLoader(){
                     <div className="contents BOARD_LIST" id="contents">
                         {/* <!-- 본문 --> */}
 
-                        <div className="top_tit">
-                            <h1 className="tit_1">엑셀 다운로드</h1>
+                        {/* <div className="top_tit">
+                            <h1 className="tit_1">엑셀 업로드</h1>
                         </div>
-                        <h2 className="tit_2">{masterBoard && masterBoard.bbsNm}</h2>
+                        <h2 className="tit_2">{masterBoard && masterBoard.bbsNm}</h2> */}
 
                         <>
-                            데이터베이스에서 다운받고자하는 데이터를 엑셀파일로 내려받습니다.
-
-
+                            <div className="excel_texta">DB에 올리고자하는 엑셀파일을 첨부합니다</div><br></br>
+                            {/* <input type='file'
+                                    className
+                                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application.vnd.ms-excel" 
+                                    onChange={excelLoad}
+                                    /> */}
                         </>
-
-                        {/* <!--// 본문 --> */}
                     </div>
                 </div>
             </div>
@@ -66,4 +58,4 @@ function ExcelLoader(){
     );
 }
 
-export default ExcelLoader;
+export default ExcelUpload;
