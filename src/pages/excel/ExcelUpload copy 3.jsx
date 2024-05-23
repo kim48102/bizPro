@@ -12,11 +12,10 @@ import { EXCEL_BBS_ID } from 'config';
 
 import { getSessionItem } from 'utils/storage';
 
-
 function ExcelUpload(onJSONData){
 
     const location = useLocation();
-    // const bbsId = EXCEL_BBS_ID;
+    const bbsId = EXCEL_BBS_ID;
     const [masterBoard, setMasterBoard] = useState({});
 
     const [listTag, setListTag] = useState([]);
@@ -44,8 +43,8 @@ function ExcelUpload(onJSONData){
     //       console.error('Error uploading data to database:', error);
     //     }
     // };
-
-    const uploadToDatabase = useCallback((jsonData) => {
+    
+    const uploadToDatabase = useCallback((data) => {
         console.groupCollapsed("upload.uploadToDatabase()");
 
         // if(data==null||data==''){
@@ -53,39 +52,26 @@ function ExcelUpload(onJSONData){
         //     return;
         // }     
 
-        // const queryString = jsonToQSTemp(data)
-        // console.log('queryString'+ queryString);
+        const queryString = "?"+ Object.entries(data).map( ([key,value]) => ( value && key+'='+value )).filter(v=>v).join('&');
 
-        const retrieveListURL = '/excel/upload';
+        const retrieveListURL = '/excel/upload'+queryString;
         const requestOptions = {
             method: "POST",
             headers: {
                 'Content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                data: jsonData //,
-                // cols: [] ,
-                //data1: this.setState({ data: data, cols: make_cols(ws["!ref"]) }),
-                // rowCnt: Object.keys(jsonData).length
-            })
+            }
         }
 
         EgovNet.requestFetch(retrieveListURL,
             requestOptions,
             (resp) => {
                 console.log('retrieveListURL ' + retrieveListURL);
-                console.log('requestOptions ' + JSON.stringify(requestOptions));
-                console.log('resp ' + JSON.stringify(resp));
-                
-                const resultCnt = parseInt(resp.result.sucCnt);
+                console.log('requestOptions ' + requestOptions);
+                console.log('resp ' + resp);
 
-                if(resultCnt>0){
-                    alert(resultCnt+"행을 성공적으로 적재했습니다.");
-                } else {
-                    alert("다시 시도해주세요.");
-                    window.location.reload();
-                }
-            
+                let mutListTag = [];
+
+                const resultCnt = parseInt(resp.result.resultCnt);
             },
             function (resp) {
                 console.log("err response : ", resp);
@@ -122,15 +108,6 @@ function ExcelUpload(onJSONData){
         readExcel(file);
     };
  
-    /* generate an array of column objects */
-    const make_cols = refstr => {
-        let o = [],
-        C = XLSX.utils.decode_range(refstr).e.c + 1;
-        for (var i = 0; i < C; ++i) o[i] = { name: XLSX.utils.encode_col(i), key: i };
-        return o;
-    };
-  
-
     return(
         <div className="container">
             <div className="c_wrap">
@@ -165,25 +142,6 @@ function ExcelUpload(onJSONData){
                             />
                             {/* 데이터베이스 적재 버튼 */}
                             {/* <button onClick={uploadToDatabase}>데이터베이스에 적재하기</button> */}
-                            {/* 업로드된 파일 데이터 표시 */}
-                            {/* <table>
-                                <thead>
-                                <tr>
-                                    <th>Header 1</th>
-                                    <th>Header 2</th> */}
-                                    {/* 필요한 만큼 헤더 추가 */}
-                                {/* </tr>
-                                </thead>
-                                <tbody>
-                                {uploadedFileData.map((row, index) => (
-                                    <tr key={index}>
-                                    <td>{row.column1}</td>
-                                    <td>{row.column2}</td> */}
-                                    {/* 필요한 만큼 셀 추가 */}
-                                    {/* </tr>
-                                ))}
-                                </tbody>
-                            </table> */}
                             </div>
                              {/* end */}
                         </>

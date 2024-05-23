@@ -30,6 +30,10 @@ function ExcelLoader(){
     //     XLSX.writeFile(wb, excelFileName);
     // };
 
+    // const handleExcelDownload = () => {
+    //     excelDownload(exampleData, 'test');
+    // };
+
     return(
         <div className="container">
             <div className="c_wrap">
