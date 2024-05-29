@@ -23,9 +23,20 @@ function ExcelUpload() {
         }
 
         EgovNet.requestFetch(retrieveListURL, requestOptions, (resp) => {
-            console.log('retrieveListURL ' + retrieveListURL);
-            console.log('requestOptions ' + JSON.stringify(requestOptions));
-            console.log('resp ' + JSON.stringify(resp));
+            if(resp != null) {
+
+                if(resp.resultCode != 200) {
+                    alert("해당 데이터가 테이블에 정상적으로 입력되지 않았습니다.");
+                    window.location.reload();
+                    return;
+                }
+
+                if(resp.result.sucCnt > 0) {
+                    alert("해당 데이터가 테이블에 정상적으로 입력되었습니다.");
+                    
+                }
+            }
+            window.location.reload();
         });
 
         console.groupEnd("upload.uploadToDatabase()");
@@ -45,7 +56,6 @@ function ExcelUpload() {
     const handleExcelFileChange = (e) => {
         console.log('handleExcelFileChange ');
         if (!e.target.files) return;
-        console.log('e.target.files ' + JSON.stringify(e.target.files));
         const file = e.target.files[0];
         const maxSize = 3 * 1024 * 1024;
         const fileSize = e.target.files[0]?.size;
@@ -53,8 +63,6 @@ function ExcelUpload() {
             alert("첨부 파일 사이즈는 3MB 이내로 등록 가능합니다.");
             return;
         }
-        console.log('e.target.files ' + JSON.stringify(e.target.files));
-        console.log('file ' + JSON.stringify(file));
         readExcel(file);
     };
 
