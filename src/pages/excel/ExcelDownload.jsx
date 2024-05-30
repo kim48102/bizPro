@@ -1,68 +1,119 @@
-import React, { useState, useCallback, useRef } from 'react';
-import URL from 'constants/url';
-
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useCallback } from 'react';
 import * as EgovNet from 'api/egovFetch';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ko } from 'date-fns/esm/locale';
 
-import { EXCEL_BBS_ID } from 'config';
+function ExcelDownload(){
 
-import { getSessionItem } from 'utils/storage';
+    const [tableId, setTableId] = useState("");
+    const today = new Date();
+    const formattedDate = today.toISOString().slice(0, 10);
+    const hours = String(today.getHours()).padStart(2, "0");
+    const minutes = String(today.getMinutes()).padStart(2, "0");
+    const seconds = String(today.getSeconds()).padStart(2, "0");
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
 
-function ExcelLoader(){
 
-    const location = useLocation();
-    const bbsId = EXCEL_BBS_ID;
-    const [masterBoard, setMasterBoard] = useState({});
+    const downloadToDatabase = useCallback(() => {
+        console.groupCollapsed("upload.downloadToDatabase()");
 
-    const [listTag, setListTag] = useState([]);
-    const [loginVO, setLoginVO] = useState([]);
+        const retrieveListURL = '/excel/download';
+        const requestOptions = {
+            method: "POST",
+            body: JSON.stringify({
+                startDate: startDate
+                , endDate: endDate
+            })
 
-    const sessionUser = getSessionItem('loginUser');
-    const sessionUserName = sessionUser?.name;
+        }
 
-    // const excelDownload = (data: object[], fileName: string) => {
-    //     const excelFileName = `${fileName}_${formatFileNameDate(new Date())}.xlsx`;
-      
-    //     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data); 
-    //     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    //     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-      
-    //     XLSX.writeFile(wb, excelFileName);
-    // };
+        EgovNet.requestFetch(retrieveListURL, requestOptions, (resp) => {
+            console.log("retrieveListURL : " +  JSON.stringify(retrieveListURL));
+            console.log("requestOptions : " +  JSON.stringify(requestOptions));
+            if(resp != null) {
 
-    // const handleExcelDownload = () => {
-    //     excelDownload(exampleData, 'test');
-    // };
+                if(resp.resultCode != 200) {
+                    alert("다시 시도해주세요.");
+                    window.location.reload();
+                    return;
+                }
 
-    return(
+                try {
+                    // 데이터를 엑셀 파일로 변환
+                    const worksheet = XLSX.utils.json_to_sheet(resp.result.downloadData);
+                    const workbook = XLSX.utils.book_new();
+                    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+                    
+                    // 엑셀 파일 다운로드
+                    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+                    saveAs(blob, `${formattedDate}_${hours}${minutes}${seconds}_data.xlsx`);
+                } catch (error) {
+                    console.error("Error fetching data: ", error);
+                }
+            }
+
+        });
+
+        console.groupEnd("upload.downloadToDatabase()");
+    }, [startDate, endDate]);
+
+    const handleExcelDownload = () => {
+        downloadToDatabase();
+    };
+
+
+    return (
         <div className="container">
             <div className="c_wrap">
-                {/* <!-- Location --> */}
-                <div className="location">
-                    <ul>
-                        <li><Link to={URL.MAIN} className="home">Home</Link></li>
-                        <li><Link to={URL.EXCEL}>엑셀 다운로드 업로드</Link></li>
-                    </ul>
-                </div>
-                {/* <!--// Location --> */}
-
                 <div className="layout">
-
-                    <div className="contents BOARD_LIST" id="contents">
-                        {/* <!-- 본문 --> */}
-
-                        <div className="top_tit">
-                            <h1 className="tit_1">엑셀 다운로드</h1>
-                        </div>
-                        <h2 className="tit_2">{masterBoard && masterBoard.bbsNm}</h2>
-
+                    <div className="contents" id="contents">
                         <>
-                            데이터베이스에서 다운받고자하는 데이터를 엑셀파일로 내려받습니다.
+                            <div className="excel_texta">DB에서 가져오고자 하는 내용을 작성합니다</div><br></br>
+                            <div>
+                        {/* <!-- 본문 > */}
+                        <div className="board_view2">
+                                <>
+                                    <DatePicker
+                                        locale={ko}
+                                        dateFormat="yyyy-MM-dd"
+                                        className="datepicker"
+                                        onChange={date => setStartDate(date)}
+                                        selected={startDate}
+                                        selectedStart
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                    />
+                                </>
+                                <>
+                                    <DatePicker
+                                        locale={ko}
+                                        dateFormat="yyyy-MM-dd"
+                                        className="datepicker"
+                                        onChange={date => setEndDate(date)}
+                                        selected={endDate}
+                                        selectedEnd
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        minDate={startDate}
+                                    />
+                                </>
+                            {/* <!-- 버튼영역 --> */}
+                            <div className="board_btn_area">
+                                <div className="left_col btn1">
+                                    <div className="btn btn_skyblue_h46 w_100" onClick={(e) => { handleExcelDownload(); }}>다운로드</div>
+                                </div>
 
-
-                        </>
-
+                            </div>
+                            {/* <!--// 버튼영역 --> */}
+                        </div>
                         {/* <!--// 본문 --> */}
+                            </div>
+                        </>
                     </div>
                 </div>
             </div>
@@ -70,4 +121,4 @@ function ExcelLoader(){
     );
 }
 
-export default ExcelLoader;
+export default ExcelDownload;

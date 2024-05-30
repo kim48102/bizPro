@@ -256,7 +256,8 @@
     .excel_text {color: #222; font-size: 30px; font-weight: 500;}
     .excel_texta {margin-top: 43px; color: #666; font-size: 18px; line-height: 30px;}
 
-
+    .datepicker {margin-top : 1.5rem; width:300px; height:42px; box-sizing:border-box; padding:8px 20px; border-radius: 4px; border : 1px solid #666;; font-size: 12px;}
+    
     .calendar_list thead th {height: 70px; border-bottom: 1px solid #888; color: #000; font-size: 16px; font-weight: 400; line-height: 70px;}
     .calendar_list thead th:first-child {color: #eb6877;}
     .calendar_list thead th:last-child {color: #169bd5;}

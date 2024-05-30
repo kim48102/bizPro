@@ -7,10 +7,6 @@ function ExcelUpload() {
 
     const formData = new FormData();
 
-    function onClickDownFile(atchFileId, fileSn) {
-        window.open(SERVER_URL + "/file?atchFileId=" + atchFileId + "&fileSn=" + fileSn + "");
-    }
-
     const uploadToDatabase = useCallback((file) => {
         console.groupCollapsed("upload.uploadToDatabase()");
 

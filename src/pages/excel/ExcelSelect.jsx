@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import URL from 'constants/url';
 import ExcelUpload from './ExcelUpload';
+import ExcelDownload from './ExcelDownload';
 
 import { Link } from 'react-router-dom';
 
@@ -8,9 +9,15 @@ function ExcelLoader(){
     const [masterBoard, setMasterBoard] = useState({});
 
     const [jsonData, setJsonData] = useState([]);
+    const [jsonDData, setDJsonData] = useState([]);
 
-    const hJsonData=(data)=>{
+    const uJsonData=(data)=>{
         setJsonData(data);
+        console.log(data);
+    }
+
+    const dJsonData=(data)=>{
+        setDJsonData(data);
         console.log(data);
     }
 
@@ -39,16 +46,16 @@ function ExcelLoader(){
                         <>
                         <br></br>
                             <div className="excel_text">
-                                <Link to={URL.EXCEL_DOWNLOAD } className="excel_text" >다운로드</Link>
-                                
+                                <span className="excel_text" >다운로드</span>
+                                {/* <Link to={URL.EXCEL_DOWNLOAD } className="excel_text" >다운로드</Link> */}
+                                <ExcelDownload onJsonData={dJsonData} className="excel_text" />
                             </div>
                             <br></br>
                             <div className="excel_list"></div>
                             <br></br>
                             <div className="excel_text">
                                 <span className="excel_text" >업로드</span>
-                                {/* <Link to={URL.EXCEL_UPLOAD } className="excel_text" >업로드</Link> */}
-                                <ExcelUpload onJsonData={hJsonData} className="excel_text" />
+                                <ExcelUpload onJsonData={uJsonData} className="excel_text" />
                             </div>
                         <br></br>
                         </>
