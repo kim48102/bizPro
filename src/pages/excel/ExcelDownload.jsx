@@ -72,48 +72,41 @@ function ExcelDownload(){
             <div className="c_wrap">
                 <div className="layout">
                     <div className="contents" id="contents">
-                        <>
-                            <div className="excel_texta">DB에서 가져오고자 하는 내용을 작성합니다</div><br></br>
-                            <div>
-                        {/* <!-- 본문 > */}
-                        <div className="board_view2">
-                                <>
-                                    <DatePicker
-                                        locale={ko}
-                                        dateFormat="yyyy-MM-dd"
-                                        className="datepicker"
-                                        onChange={date => setStartDate(date)}
-                                        selected={startDate}
-                                        selectedStart
-                                        startDate={startDate}
-                                        endDate={endDate}
-                                    />
-                                </>
-                                <>
-                                    <DatePicker
-                                        locale={ko}
-                                        dateFormat="yyyy-MM-dd"
-                                        className="datepicker"
-                                        onChange={date => setEndDate(date)}
-                                        selected={endDate}
-                                        selectedEnd
-                                        startDate={startDate}
-                                        endDate={endDate}
-                                        minDate={startDate}
-                                    />
-                                </>
+                        <div className="excel_texta">DB에서 가져오고자 하는 조건의 날짜를 선택합니다. (필수)</div><br></br>
+                        <div>
+                            <>
+                                <DatePicker
+                                    locale={ko}
+                                    dateFormat="yyyy-MM-dd"
+                                    className="datepicker"
+                                    onChange={date => setStartDate(date)}
+                                    selected={startDate}
+                                    selectedStart
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                />
+                            </>
+                            <>
+                                <DatePicker
+                                    locale={ko}
+                                    dateFormat="yyyy-MM-dd"
+                                    className="datepicker"
+                                    onChange={date => setEndDate(date)}
+                                    selected={endDate}
+                                    selectedEnd
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    minDate={startDate}
+                                />
+                            </>
                             {/* <!-- 버튼영역 --> */}
-                            <div className="board_btn_area">
+                            <div className="excel_button">
                                 <div className="left_col btn1">
                                     <div className="btn btn_skyblue_h46 w_100" onClick={(e) => { handleExcelDownload(); }}>다운로드</div>
                                 </div>
-
                             </div>
                             {/* <!--// 버튼영역 --> */}
                         </div>
-                        {/* <!--// 본문 --> */}
-                            </div>
-                        </>
                     </div>
                 </div>
             </div>

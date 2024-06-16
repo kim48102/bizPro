@@ -2,6 +2,7 @@ import { SERVER_URL } from 'config';
 import React, { useCallback } from 'react';
 import { Form } from 'react-bootstrap';
 import * as EgovNet from 'api/egovFetch';
+import * as xlsx from 'xlsx';
 
 function ExcelUpload() {
 
@@ -43,23 +44,54 @@ function ExcelUpload() {
         const fileReader = new FileReader();
         fileReader.readAsArrayBuffer(file);
         console.log('readExcel fileReader ' + fileReader);
-        fileReader.onload = (e) => {
-            if (!e.target) return;
-            uploadToDatabase(file);
-        };
+        // fileReader.onload = (e) => {
+        //     if (!e.target) return;
+        //     uploadToDatabase(file);
+        // };
     };
 
     const handleExcelFileChange = (e) => {
         console.log('handleExcelFileChange ');
         if (!e.target.files) return;
         const file = e.target.files[0];
-        const maxSize = 3 * 1024 * 1024;
-        const fileSize = e.target.files[0]?.size;
-        if (fileSize > maxSize) {
-            alert("첨부 파일 사이즈는 3MB 이내로 등록 가능합니다.");
-            return;
-        }
+        // const maxSize = 3 * 1024 * 1024;
+        // const fileSize = e.target.files[0]?.size;
+        // if (fileSize > maxSize) {
+        //     alert("첨부 파일 사이즈는 3MB 이내로 등록 가능합니다.");
+        //     return;
+        // }
         readExcel(file);
+    };
+
+    const generateExcel = (e) => {
+        console.log('handleExcelFileChange ');
+        if (!e.target.files) return;
+        const file = e.target.files[0];
+        
+        // const workbook = new ExcelJS.Workbook();
+        // const sheet = workbook.addWorksheet('Employee List');
+
+        // // 헤더 추가
+        // sheet.addRow(['', '이름', '성별', '전화번호']);
+
+        // // 데이터 추가
+        // data.forEach(emp => {
+        //     sheet.addRow([emp.e_code, emp.e_name, emp.e_gender, emp.e_phone]);
+        // });
+
+        // // 엑셀 파일을 바이트 배열로 변환
+        // return workbook.xlsx.writeBuffer().then(buffer => buffer);
+
+        const xlsx = require('xlsx');
+
+        const workbook = xlsx.readFile('.xlsx'); // 액샐 파일 읽어오기
+        const firstSheetName = workbook.SheetNames[0]; // 첫 번째 시트 이름 가져오기
+        const firstShee = workbook.Sheets[firstSheetName]; // 시트 이름을 이용해 엑셀 파일의 첫 번째 시트 가져오기
+    
+        const firstSheeJson = xlsx.utils.sheet_to_json(firstShee); // 첫 번째 시트 내용을 json 데이터로 변환
+    
+        console.log(firstSheeJson);
+    
     };
 
     return (
@@ -74,7 +106,8 @@ function ExcelUpload() {
                                     type='file'
                                     className='shadow-none'
                                     accept='.xlsx, .xls'
-                                    onChange={(e) => { handleExcelFileChange(e) }}></Form.Control>
+                                    onChange={(e) => { generateExcel(e) }}></Form.Control>
+                                <input type="button" onClick={(e)=>{ handleExcelFileChange(e) }}/>
                             </div>
                         </>
                     </div>
